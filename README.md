@@ -6,10 +6,8 @@ cms-rails
 $ rails new appname 
 
 ##2. 修改gem包的引用
-```sh
-$ vi Gemfile
-```
 ```ruby
+$ vi Gemfile
 gem 'will_paginate', '~> 3.0'
 gem 'redactor-rails' ,:git => 'git://github.com/SammyLin/redactor-rails.git'
 gem "carrierwave"
@@ -26,33 +24,29 @@ $ bundle install
 $ rake cms:install:migrations
 ```
 ##5. 增加初始化数据脚本
-```sh
-$ vi db/seeds.rb
-```
 ```ruby
+$ vi db/seeds.rb
+
 Cms::Engine.load_seed
 ```
 ##6. 修改路由
-```sh
-$ vi config/routes.rb
-```
 ```ruby
-mount Cms::Engine =>'/ums'
+$ vi config/routes.rb
+
+mount Cms::Engine =>'/cms'
 ```
 ##7. 引入helper类
-```sh
-$ vi application_controller.rb
-```
 ```ruby
+$ vi application_controller.rb
+
   helper Cms::Engine.helpers
   include Cms::ApplicationHelper  
 ```
 ##8. 安装RedactorRails
-```sh
+```ruby
 $ rails generate redactor:install --devise
 $ vi application.js
-```
-```ruby
+
 //= require redactor-rails
 //= require redactor-rails/langs/zh_cn
 //= require redactor-rails/plugins/fontsize
@@ -62,15 +56,13 @@ $ vi application.js
 ```
 ```sh
 $ vi application.css
-```
-```ruby
+
 *= require redactor-rails
 *= redactor-rails/plugins
 ```
-```sh
-$ vi application_controller.rb
-```
 ```ruby
+$ vi application_controller.rb
+
 class ApplicationController < ActionController::Base
   def redactor_authenticate_user!
      true
@@ -86,11 +78,10 @@ def id
 end
 end
 ```
-```sh
+```ruby
 $ vi redactor_rails_document_uploader.rb
 $ vi redactor_rails_picture_uploader.rb
-```
-```ruby
+
   def store_dir
     #"system/redactor_assets/pictures/#{model.id}"
     "redactor/" + model.created_at.strftime("%Y%m/%d/") + 
