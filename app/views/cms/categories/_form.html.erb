@@ -1,0 +1,43 @@
+<%= form_for(@cms_category) do |f| %>
+  <% if @cms_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_category.errors.count, "error") %> prohibited this cms.category from being saved:</h2>
+
+      <ul>
+      <% @cms_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name ,'类别名称' %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :column_id ,'所属栏目'%>
+    <%= f.select :column_id,@cms_columns.collect {|p| [ p.name, p.id ]}%>
+  </div>
+   <div class="field">
+    <%= f.label :the_order ,'类别顺序'%>
+    <%= f.number_field :the_order %>
+  </div>
+  <div class="field">
+    <%= f.label :description ,'类别描述'%>
+    <%= f.text_area :description , :rows=>"3"%>
+  </div>
+  <div class="field">
+    <%= f.label :logo_file ,'类别图片'%>
+    <%= f.file_field :logo_file %>
+  </div>
+  <div class="field">
+    <%= f.label :is_enabled ,'是否可用'%>
+    <%= f.check_box :is_enabled %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+     &nbsp;&nbsp;
+     <%= link_to '返回', cms.categories_path ,:class => 'btn btn-default'%>
+  </div>
+<% end %>

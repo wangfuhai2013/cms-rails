@@ -1,0 +1,57 @@
+<h1>微站设置 <small><%= link_to '修改设置', cms.setting_modify_path,:class => "btn btn-primary" %></small></h1>
+
+<% if flash[:notice] || flash[:error]  %>
+<div class="alert <%= "alert-success" if flash[:notice] %> <%= "alert-danger" if flash[:error] %>">
+  <a class="close" data-dismiss="alert">×</a>
+  <%= flash[:notice] %><%= flash[:error] %>
+</div>
+<% end %>
+
+<p>
+  <strong>站点名称:</strong>
+  <%= @site.name %>
+</p>
+<p>
+  <strong>站点标识:</strong>
+  <%= @site.site_key %>
+</p>
+<p>
+  <strong>浏览次数:</strong>
+  <%= @site.view_count %>
+</p>
+
+<p>
+  <strong>站点Logo:</strong>
+ <div class="thumbnail">
+   <% if @site.logo_file %>
+     <%= image_tag  "/"+@site.logo_file %>
+    <% end %>
+  </div>
+</p>
+
+<p>
+  <strong>联系电话:</strong>
+  <%= @site.tel %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @site.email %>
+</p>
+
+<p>
+  <strong>联系地址:</strong>
+  <%= @site.address %>
+</p>
+
+<p>
+  <strong>邮编:</strong>
+  <%= @site.zip %>
+</p>
+
+<p>
+  <strong>状态:</strong>
+  <span class="label <%= @site.is_enabled ? 'label-success' : 'label-inverse' %>">
+  <%= @site.is_enabled ? "可用" : "停用" %>
+  </span>
+</p>

@@ -1,0 +1,44 @@
+<h1>站点设置</h1>
+<%= form_for(@site,url: cms.setting_modify_path) do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this cms.site from being saved:</h2>
+
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name ,"名称"%>
+        <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :logo_file ,"logo文件"%>
+    <%= f.file_field :logo_file %>
+  </div>
+  <div class="field">
+    <%= f.label :tel,"电话" %>
+    <%= f.text_field :tel %>
+  </div>
+  <div class="field">
+    <%= f.label :email  %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :address ,"地址"%>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :zip ,"邮编"%>
+    <%= f.text_field :zip %>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit " 保存 ",:class => 'btn btn-primary' ,data: {disable_with: '正在保存...'}%>
+  </div>
+<% end %>

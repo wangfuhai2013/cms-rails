@@ -1,0 +1,68 @@
+<%= form_for(@cms_column) do |f| %>
+  <% if @cms_column.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_column.errors.count, "error") %> prohibited this cms.column from being saved:</h2>
+
+      <ul>
+      <% @cms_column.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name ,'栏目名称' %>
+    <%= f.text_field :name %>
+  </div>
+
+    <div class="field">
+    <%= f.label :the_order ,'栏目顺序'%>
+    <%= f.number_field :the_order %>
+  </div>
+
+  <div class="field">
+    <%= f.label :path ,'栏目路径'%>
+    
+    <% if @cms_column.parent_column %>
+      <%= @cms_column.parent_column.path + "/" + @cms_column.path %>
+     <% else %>
+     <%= f.text_field :path %>
+    <% end %>
+
+  </div>
+  <div class="field">
+    <%= f.label :function_id ,'栏目功能'%>
+    <% unless @cms_column.parent_column.nil? %>
+       <%= @cms_column.parent_column.function.name + ">" %>
+    <% end %>
+    <% if @cms_column.function.nil? %>
+       <%= f.select :function_id,@cms_functions.collect {|p| [ p.name, p.id ]}%>
+    <% else %>
+       <%= @cms_column.function.name %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_top_menu ,'是否顶部菜单'%>
+    <%= f.check_box :is_top_menu %>
+  </div>
+  <div class="field">
+    <%= f.label :is_bottom_menu ,'是否底部菜单'%>
+    <%= f.check_box :is_bottom_menu %>
+  </div>
+    <div class="field">
+    <%= f.label :has_menu ,'是否显示菜单'%>
+    <%= f.check_box :has_menu %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_enabled ,'是否可用'%>
+    <%= f.check_box :is_enabled %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+     &nbsp;&nbsp;
+    <%= link_to '返回', cms.columns_path ,:class => 'btn btn-default' %>
+  </div>
+<% end %>

@@ -1,0 +1,3 @@
+module Cms::FunctionsHelper
+
+end

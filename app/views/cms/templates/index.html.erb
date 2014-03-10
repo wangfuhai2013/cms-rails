@@ -1,0 +1,33 @@
+<h1>Listing cms.templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Theme</th>
+      <th>Function</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cms_templates.each do |cms_template| %>
+      <tr>
+        <td><%= cms_template.name %></td>
+        <td><%= cms_template.theme %></td>
+        <td><%= cms_template.function %></td>
+        <td><%= str_trim(cms_template.content,30) %></td>
+        <td><%= link_to 'Show', cms_template %></td>
+        <td><%= link_to 'Edit', cms.edit_template_path(cms_template) %></td>
+        <td><%= link_to 'Destroy', cms_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Template', cms.new_template_path %>

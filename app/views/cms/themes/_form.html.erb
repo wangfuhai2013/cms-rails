@@ -1,0 +1,43 @@
+<%= form_for(@cms_theme) do |f| %>
+  <% if @cms_theme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_theme.errors.count, "error") %> prohibited this cms.theme from being saved:</h2>
+
+      <ul>
+      <% @cms_theme.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name ,'名称'%>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ua_type ,'终端类型'%>
+    <%= f.select :ua_type, Cms::Theme.ua_type_options %>
+  </div>  
+
+  <div class="field">
+    <%= f.label :template_css ,'模板css'%>
+    <%= f.text_area :template_css , :rows=>"8" %>
+  </div>
+    <div class="field">
+    <%= f.label :template_js ,'模板js'%>
+    <%= f.text_area :template_js , :rows=>"8" %>
+  </div>
+  <div class="field">
+    <%= f.label :template_layout,'模板布局' %>
+    <%= f.text_area :template_layout , :rows=>"8" %>
+  </div>
+  <div class="field">
+    <%= f.label :is_enabled ,'是否可用'%>
+    <%= f.check_box :is_enabled %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+    &nbsp;&nbsp;
+    <%= link_to '返回', cms.themes_path ,:class => 'btn btn-default' %>
+  </div>
+<% end %>

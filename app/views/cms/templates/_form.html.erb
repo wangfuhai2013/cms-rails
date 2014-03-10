@@ -1,0 +1,73 @@
+<%= form_for(@cms_template) do |f| %>
+  <% if @cms_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_template.errors.count, "error") %> prohibited this cms.template from being saved:</h2>
+
+      <ul>
+      <% @cms_template.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :theme_id %>
+  <div class="field">
+    栏目名称:
+      <% if  @cms_template.column.parent_column.nil? %>
+          <%= @cms_template.column.name %>
+      <%  else %>
+          <%= @cms_template.column.parent_column.name + ">" + @cms_template.column.name %>
+      <%  end %>
+  </div>
+   <div class="field">
+      相关功能:
+      <% if  @cms_template.function.parent_function.nil? %>
+          <%= @cms_template.function.name %>
+      <%  else %>
+          <%= @cms_template.function.parent_function.name + ">" + @cms_template.function.name %>
+      <%  end %>
+      </div>
+  <div class="field">
+    <div><%= f.label :content ,'模板内容'%> 
+    <%= f.text_area :content ,:id=>"redactor",:rows=>"8"%>
+  </div>
+
+   <script type="text/javascript">
+    var ori_content = $('#redactor').val();
+     $(document).ready(
+   // function activeHtmlEditor(){
+    function(){
+      var csrf_token = $('meta[name=csrf-token]').attr('content');
+      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var params;
+      if (csrf_param !== undefined && csrf_token !== undefined) {
+        params = csrf_param + "=" + encodeURIComponent(csrf_token);
+      }
+
+      $.Redactor.opts.langs['zh_cn']['filename'] = "名称(可选)";
+      $('#redactor').redactor(
+        { "imageUpload":"/redactor_rails/pictures?" + params,
+          "imageGetJson":"/redactor_rails/pictures",
+          "fileUpload":"/redactor_rails/documents?" + params,
+          "fileGetJson":"/redactor_rails/documents",
+          "path":"/assets/redactor-rails",
+          "css":"style.css",
+          "autoresize":"true",
+          "minHeight": 200,
+          "visual": false,
+          "plugins": ['fullscreen','fontcolor','fontsize','fontfamily'],
+          "lang":'zh_cn',
+          "initCallback": function() {
+              $('#redactor').val(ori_content);
+           }
+        } 
+      );
+    });
+   //}
+  </script>  
+  <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+    &nbsp;&nbsp;
+    <%= link_to '返回', cms.theme_path(@cms_template.theme) ,:class => 'btn btn-default' %>
+  </div>
+<% end %>

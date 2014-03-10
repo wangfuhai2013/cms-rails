@@ -1,0 +1,47 @@
+<%= form_for(@cms_function) do |f| %>
+  <% if @cms_function.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_function.errors.count, "error") %> prohibited this cms.function from being saved:</h2>
+
+      <ul>
+      <% @cms_function.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name ,"名称"%>
+    <%= f.text_field :name %>
+  </div>
+  
+   <div class="field">
+    <%= f.label :parent_function_id ,"父功能"%>
+    <% 
+
+       parent_function_options = @parent_functions.collect {|p| [ p.name, p.id ] } 
+       parent_function_options.delete([@cms_function.name,@cms_function.id])
+       parent_function_options.insert(0,['无',nil])
+    %>
+    <%= f.select :parent_function_id,parent_function_options%>
+  </div>
+
+  <div class="field">
+    <%= f.label :method ,"方法"%>
+    <% if @cms_function.parent_function %>
+    <%= @cms_function.parent_function.method + "_" %>
+    <% end %>
+    <%= f.text_field :method %>
+  </div>
+    <div class="field">
+    <%= f.label :content ,'模板内容' %>
+    <%= f.text_area :content , :rows=>"8" %>
+  </div>
+   
+   <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+    &nbsp;&nbsp;
+    <%= link_to '返回', cms.functions_path ,:class => 'btn btn-default' %>
+  </div>
+<% end %>

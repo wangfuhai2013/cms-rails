@@ -1,0 +1,86 @@
+<%= form_for(@cms_info) do |f| %>
+  <% if @cms_info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cms_info.errors.count, "error") %> prohibited this cms.info from being saved:</h2>
+
+      <ul>
+      <% @cms_info.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title ,'标题' %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id ,'所属类别'%>
+    <%= f.select :category_id,@cms_categories.collect {|p| [ p.full_name, p.id ]}%>
+  </div>
+  <div class="field">
+    <%= f.label :description ,'摘要'%>
+    <%= f.text_area :description , :rows=>"3"%>
+  </div>
+
+    <script type="text/javascript">
+    $(document).ready(
+      function(){
+      var csrf_token = $('meta[name=csrf-token]').attr('content');
+      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var params;
+      if (csrf_param !== undefined && csrf_token !== undefined) {
+        params = csrf_param + "=" + encodeURIComponent(csrf_token);
+      }
+
+      $.Redactor.opts.langs['zh_cn']['filename'] = "名称(可选)";
+      $('#redactor').redactor(
+        { "imageUpload":"/redactor_rails/pictures?" + params,
+          "imageGetJson":"/redactor_rails/pictures",
+          "fileUpload":"/redactor_rails/documents?" + params,
+          "fileGetJson":"/redactor_rails/documents",
+          "path":"/assets/redactor-rails",
+          "css":"style.css",
+          "autoresize":"true",
+          "lang":'zh_cn',
+          "minHeight": 200,
+          "plugins": ['fullscreen','fontcolor','fontsize','fontfamily']
+        } 
+      );
+    });
+  </script>
+
+   <div class="field" >
+    <%= f.label :content , "内容" %>
+    <%= f.text_area :content , :id=>"redactor",:rows => "15" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cover_picture_file ,'封面图'%>
+    <%= f.file_field :cover_picture_file %>
+  </div>
+  <div class="field">
+    <%= f.label :attachment_file ,'附件'%>
+    <%= f.file_field :attachment_file %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_enabled ,'是否可用'%>
+    <%= f.check_box :is_enabled %>
+  </div>
+    <div class="field">
+    <%= f.label :is_recommend ,'是否推荐'%>
+    <%= f.check_box :is_recommend %>
+  </div>
+    <div class="field">
+    <%= f.label :is_sticky ,'是否置顶'%>
+    <%= f.check_box :is_sticky %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit " 提交 ",:class => 'btn btn-primary',data: {disable_with: '正在提交...'}%>
+    &nbsp;&nbsp;
+    <%= link_to '返回', cms.infos_path,:class => 'btn btn-default' %>
+  </div>
+<% end %>
