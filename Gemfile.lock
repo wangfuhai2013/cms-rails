@@ -102,5 +102,4 @@ PLATFORMS
 
 DEPENDENCIES
   cms!
-  redactor-rails (~> 0.4.3)
   sqlite3
