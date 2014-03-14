@@ -6,6 +6,7 @@ class Cms::Column < ActiveRecord::Base
   belongs_to :site
   belongs_to :function
   has_many   :templates,dependent: :destroy
+  has_many   :categories
 
   belongs_to :parent_column ,class_name: "Column", foreign_key: "parent_column_id" 
   has_many   :child_columns ,class_name: "Column", foreign_key: "parent_column_id" ,dependent: :destroy

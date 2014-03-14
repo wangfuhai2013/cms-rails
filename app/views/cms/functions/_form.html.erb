@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name ,"名称"%>
+    <%= f.label :name ,"功能名称"%>
     <%= f.text_field :name %>
   </div>
   
    <div class="field">
-    <%= f.label :parent_function_id ,"父功能"%>
+    <%= f.label :parent_function_id ,"父功能名"%>
     <% 
 
        parent_function_options = @parent_functions.collect {|p| [ p.name, p.id ] } 
@@ -28,7 +28,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :method ,"方法"%>
+    <%= f.label :method ,"功能方法"%>
     <% if @cms_function.parent_function %>
     <%= @cms_function.parent_function.method + "_" %>
     <% end %>

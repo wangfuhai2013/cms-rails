@@ -18,4 +18,17 @@ class Cms::Theme < ActiveRecord::Base
   def self.ua_type_options
     [['电脑', 'P'], ['手机', 'M']]
   end
+
+    def template_type_name
+    case self.template_type
+    when 'D'
+      '数据库'
+    when 'F'
+      '文件' 
+    end 
+  end
+  
+  def self.template_type_options
+    [['数据库', 'D'], ['文件', 'F']]
+  end
 end

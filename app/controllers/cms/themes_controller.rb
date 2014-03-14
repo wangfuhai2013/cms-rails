@@ -95,7 +95,7 @@ class Cms::ThemesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cms_theme_params
-      params.require(:theme).permit(:name,:ua_type,:is_enabled,
+      params.require(:theme).permit(:name,:path,:template_type,:ua_type,:is_enabled,
                                     :template_css,:template_layout,:template_js)
     end
 end

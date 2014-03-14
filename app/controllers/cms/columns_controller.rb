@@ -64,8 +64,7 @@ class Cms::ColumnsController < ApplicationController
     child_column = Cms::Column.new
     child_column.name = child_function.name
     child_column.path = child_function.method
-    child_column.has_menu = parent_column.has_menu
-    child_column.require_openid = parent_column.require_openid              
+    child_column.has_menu = parent_column.has_menu          
     child_column.is_enabled = true
     child_column.the_order = 10              
     child_column.parent_column = parent_column

@@ -60,8 +60,11 @@ module Cms
            #所有图片自动转成jpg格式，并且宽控制在720以内，压缩质量为80，以减小文件大小
            if file_name_ext == '.jpg'
                image = MiniMagick::Image.open(res_file.path)
-               if image[:width] > 720
-                  image.resize "720"            
+               max_width = 720
+               max_width = Rails.configuration.image_max_width.to_i unless Rails.configuration.image_max_width.blank?
+
+               if image[:width] > max_width
+                  image.resize max_width            
                end               
                image.format "jpg"
                image.quality "80"
@@ -86,7 +89,9 @@ module Cms
        if image_file?(file_name)
          image = MiniMagick::Image.open(file_name)
          image.format "jpg"
-         image.resize "150x150^"
+         thumb_size = "150x150^" 
+         thumb_size = Rails.configuration.image_thumb_size unless Rails.configuration.image_thumb_size.blank?
+         image.resize thumb_size
          #image.combine_options do |i|           
          #  i.resize "150x150^"
          #  i.gravity "center"

@@ -35,14 +35,29 @@ $ vi config/routes.rb
 
 mount Cms::Engine =>'/cms'
 ```
-##7. 引入helper类
+##7. 增加配置项
+```ruby
+$ vi config/application.rb
+...
+    config.time_zone = 'Beijing'
+    config.active_record.default_timezone = :local
+
+    config.upload_path = "upload"
+    config.upload_extname = ".png;.bmp;.jpeg;.jpg;.gif;.mp3"
+    config.image_max_width = 720
+    config.image_thumb_size = "150x150^" 
+
+    WillPaginate.per_page = 15
+...
+```
+##8. 引入helper类
 ```ruby
 $ vi application_controller.rb
 
   helper Cms::Engine.helpers
   include Cms::ApplicationHelper  
 ```
-##8. 安装RedactorRails
+##9. 安装RedactorRails
 ```ruby
 $ rails generate redactor:install --devise
 $ vi application.js
@@ -58,7 +73,7 @@ $ vi application.js
 $ vi application.css
 
 *= require redactor-rails
-*= redactor-rails/plugins
+*= require redactor-rails/plugins
 ```
 ```ruby
 $ vi application_controller.rb
@@ -84,7 +99,7 @@ $ vi redactor_rails_picture_uploader.rb
 
   def store_dir
     #"system/redactor_assets/pictures/#{model.id}"
-    "redactor/" + model.created_at.strftime("%Y%m/%d/") + 
+    "upload/redactor/" + model.created_at.strftime("%Y%m/%d/") + 
           "#{model.id}_" + Digest::SHA1.hexdigest(model.id.to_s+"redactor")[0,6].to_s
   end
   def cache_dir

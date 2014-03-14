@@ -10,10 +10,10 @@ module Cms::InfosHelper
 	end
 	def info
         info_categories
-        @new_infos = Cms::Info.where("column_id = ? AND is_enabled = ? ",@cms_column.id,true).
+        @new_infos = Cms::Info.where("column_id = ? AND is_enabled = ? ",@site_column.id,true).
                                       page(params[:page]).per_page(5).order("updated_at DESC")
         @recommend_infos = Cms::Info.where("column_id = ? AND is_recommend = ? AND is_enabled = ?",
-        	                     @cms_column.id,true,true).order("updated_at DESC").limit(5)
+        	                     @site_column.id,true,true).order("updated_at DESC").limit(5)
 	end
 	def info_list
 		info_categories
@@ -37,10 +37,10 @@ module Cms::InfosHelper
 	end
 
 	def info_categories
-		if @cms_column.parent_column.nil?
-			column_id = @cms_column.id 
+		if @site_column.parent_column.nil?
+			column_id = @site_column.id 
 		else
-			column_id = @cms_column.parent_column.id 
+			column_id = @site_column.parent_column.id 
 		end
 
 	    @info_categories = Cms::Category.where(column_id: column_id,is_enabled:true)

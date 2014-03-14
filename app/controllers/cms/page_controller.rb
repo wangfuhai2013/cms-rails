@@ -42,14 +42,41 @@ class Cms::PageController < ApplicationController
       #通过模板生成响应页面
       unless performed?
         #template = Site::Template.where(theme:@theme,column:@site_column).take
-        template = @theme.templates.where(column:@site_column).take
+        result_tempalte = ''
+        if @theme.template_type =='D' # 数据库模板
+          template = @theme.templates.where(column:@site_column).take
 
-        body_template = template.content if template
-        layout = @theme.template_layout if @theme
-        result_tempalte = layout.sub("{{body_template}}",body_template.to_s) if layout
-        
-        logger.debug("result_tempalte:" + result_tempalte.to_s)
+          body_template = template.content if template
+          layout = @theme.template_layout unless @theme.template_layout.blank?          
+        else #文件模板
+          if @theme.path && @theme.path.start_with?('/') 
+            theme_path = @theme.path
+          else
+            theme_path = File.join(Rails.root,'public','theme', @theme.path.to_s) #TODO 模板文件安全问题
+          end
+          layout_file = File.join(theme_path,'layout.html.erb')
+          layout = File.read(layout_file) if File.file?(layout_file)
 
+          if @site_column.parent_column
+            body_file = File.join(theme_path,@site_column.parent_column.path,@site_column.path + ".html.erb")
+          else
+            if @site_column.child_columns.size > 0
+              body_file = File.join(theme_path,@site_column.path,"index.html.erb") #有子栏目
+            else
+              body_file = File.join(theme_path,@site_column.path + ".html.erb") #无子栏目
+            end
+          end       
+          logger.debug("body_file:" + body_file)
+          body_template = File.read(body_file) if File.file?(body_file)
+
+        end
+        if layout
+          result_tempalte = layout.sub("{{body_template}}",body_template.to_s) 
+        else
+          result_tempalte = body_template if body_template
+        end
+
+        #logger.debug("result_tempalte:" + result_tempalte.to_s)
         render inline: result_tempalte
       end
   end
