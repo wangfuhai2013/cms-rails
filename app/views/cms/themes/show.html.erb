@@ -29,6 +29,7 @@
   <strong>终端类型:</strong>
   <%= @cms_theme.ua_type_name %>
 </p>
+<% if @cms_theme.template_type == 'D' %>
 <p>
   <strong>模板css:</strong>
   <%= str_trim(@cms_theme.template_css,500)%>
@@ -42,6 +43,7 @@
   <strong>模板布局:</strong>
   <%= str_trim(@cms_theme.template_layout,500) %>
 </p>
+<% end %>
    <div class="form-actions">
     <%= link_to '修改', cms.edit_theme_path(@cms_theme) ,:class => 'btn btn-primary'%>  
     &nbsp;&nbsp;
@@ -50,7 +52,7 @@
 
 
 <h1>模板列表 <small></h1>
-
+<% if @cms_theme.template_type == 'D' %>
 <table class="table table-striped table-bordered table-condensed">
   <thead>
     <tr>
@@ -84,7 +86,11 @@
     <% end %>
   </tbody>
 </table>
-
+<% else %>
+<div class="alert alert-success">
+  该主题为模板类型为文件，不显示数据为中模板列表
+</div>
+<% end %>
 <br>
 
 

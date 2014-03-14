@@ -68,6 +68,7 @@ class Cms::PageController < ApplicationController
           end       
           logger.debug("body_file:" + body_file)
           body_template = File.read(body_file) if File.file?(body_file)
+          logger.info("body_template:" + body_template.to_s)
 
         end
         if layout
@@ -76,7 +77,8 @@ class Cms::PageController < ApplicationController
           result_tempalte = body_template if body_template
         end
 
-        #logger.debug("result_tempalte:" + result_tempalte.to_s)
+        logger.info("result_tempalte is nil,layout_file:" + layout_file.to_s + 
+                    ",body_file:" + body_file.to_s)
         render inline: result_tempalte
       end
   end

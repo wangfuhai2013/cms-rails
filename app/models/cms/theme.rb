@@ -1,7 +1,8 @@
 class Cms::Theme < ActiveRecord::Base
   validates_presence_of :site,:name
   validates :name, uniqueness: { scope: :site, message: "主题名称不可重复" }
-  
+  validates :path, presence: {message: "模板类型为文件，必须设置主题路径" },if: "template_type == 'F'"
+
   belongs_to  :site
   belongs_to :reference_theme, class_name:"Cms::Theme"
   has_many :templates ,dependent: :destroy
