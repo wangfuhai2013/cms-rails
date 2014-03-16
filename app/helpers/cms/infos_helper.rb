@@ -21,7 +21,7 @@ module Cms::InfosHelper
 		@sticky_infos = Cms::Info.where("category_id =? AND is_sticky=? AND is_enabled =? ",
 			                               params[:id],true,true).order("updated_at DESC").limit(5)
 		@category_infos = Cms::Info.where("category_id =? AND is_sticky=? AND  is_enabled =? ",
-			                               params[:id],false,true).page(params[:page]).per_page(8).
+			                               params[:id],false,true).page(params[:page]).per_page(9).
 		                                   order("updated_at DESC")
         render json: @category_infos if request.format.json?
 	end
