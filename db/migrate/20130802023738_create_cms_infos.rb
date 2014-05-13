@@ -9,6 +9,7 @@ class CreateCmsInfos < ActiveRecord::Migration
       t.string :cover_picture_file
       t.string :attachment_file
       t.integer :view_count
+      t.integer  :the_order         
       t.boolean :is_sticky
       t.boolean :is_recommend
       t.boolean :is_enabled

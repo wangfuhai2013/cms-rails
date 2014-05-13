@@ -31,6 +31,7 @@
       <th>信息附件</th>
       <th>浏览次数</th>
       <th>是否可用</th>
+      <th>排列顺序</th>      
       <th>是否推荐</th>
       <th>是否置顶</th>
       <th></th>
@@ -64,6 +65,7 @@
              <%= cms_info.is_enabled ? '是' : '否' %>
           </span>
         </td>
+        <td><%= cms_info.the_order %></td>             
         <td>
           <span class="label <%= cms_info.is_recommend ? 'label-success' : 'label-inverse' %>">
           <%= cms_info.is_recommend ? '是' : '否' %>

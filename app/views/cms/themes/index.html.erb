@@ -11,9 +11,9 @@
   <thead>
     <tr>
       <th>主题名称</th>   
-      <th>主题路径</th>   
+      <th>终端类型</th>       
       <th>模板类型</th>         
-      <th>终端类型</th>      
+      <th>主题路径</th>        
       <th>模板css</th>
       <th>模板js</th>
       <th>模板布局</th>
@@ -28,9 +28,9 @@
     <% @cms_themes.each do |cms_theme| %>
       <tr>
         <td><%= cms_theme.name %></td>
-        <td><%= cms_theme.path %></td>
+        <td><%= cms_theme.ua_type_name %></td>                   
         <td><%= cms_theme.template_type_name %></td>
-        <td><%= cms_theme.ua_type_name %></td>                
+        <td><%= cms_theme.path %></td>     
         <td><%= str_trim(cms_theme.template_css,20) %></td>
         <td><%= str_trim(cms_theme.template_js,20) %></td>
         <td><%= str_trim(cms_theme.template_layout,20) %></td>

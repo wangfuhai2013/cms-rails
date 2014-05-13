@@ -20,7 +20,7 @@ class Cms::Theme < ActiveRecord::Base
     [['电脑', 'P'], ['手机', 'M']]
   end
 
-    def template_type_name
+  def template_type_name
     case self.template_type
     when 'D'
       '数据库'

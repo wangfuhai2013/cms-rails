@@ -15,18 +15,17 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :path ,'主题路径'%>
-    <%= f.text_field :path %>
-  </div>
-    <div class="field">
-    <%= f.label :template_type ,'模板类型'%>
-    <%= f.select :template_type, Cms::Theme.template_type_options %>
-  </div> 
-  <div class="field">
     <%= f.label :ua_type ,'终端类型'%>
     <%= f.select :ua_type, Cms::Theme.ua_type_options %>
   </div>  
-
+  <div class="field">
+    <%= f.label :template_type ,'模板类型'%>
+    <%= f.select :template_type, Cms::Theme.template_type_options %>
+  </div> 
+    <div class="field">
+    <%= f.label :path ,'主题路径'%>
+    <%= f.text_field :path %>
+  </div>
   <div class="field">
     <%= f.label :template_css ,'模板css'%>
     <%= f.text_area :template_css , :rows=>"8" %>

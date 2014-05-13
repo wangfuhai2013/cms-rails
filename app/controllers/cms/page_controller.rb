@@ -52,7 +52,7 @@ class Cms::PageController < ApplicationController
           if @theme.path && @theme.path.start_with?('/') 
             theme_path = @theme.path
           else
-            theme_path = File.join(Rails.root,'public','theme', @theme.path.to_s) #TODO 模板文件安全问题
+            theme_path = File.join(Rails.root,'public','themes', @theme.path.to_s) #TODO 模板文件安全问题
           end
           layout_file = File.join(theme_path,'layout.html.erb')
           layout = File.read(layout_file) if File.file?(layout_file)

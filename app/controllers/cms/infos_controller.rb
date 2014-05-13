@@ -14,7 +14,7 @@ class Cms::InfosController < ApplicationController
     where += " AND category_id IN (#{category_ids}) " if params[:category_id].blank?
     where += " AND category_id = #{params[:category_id]} " unless params[:category_id].blank?
     where += " AND title like '%#{params[:title]}%' " unless params[:title].blank?    
-    @cms_infos = Cms::Info.where(where).order(updated_at: :desc).page(params[:page])
+    @cms_infos = Cms::Info.where(where).order(the_order: :asc,updated_at: :desc).page(params[:page])
   end
 
   # GET /site/infos/1
@@ -26,6 +26,7 @@ class Cms::InfosController < ApplicationController
   def new
     @cms_info = Cms::Info.new
     @cms_info.is_enabled = true
+    @cms_info.the_order = 10
   end
 
   # GET /site/infos/1/edit
@@ -123,6 +124,6 @@ class Cms::InfosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cms_info_params
       params.require(:info).permit(:title, :description, :category_id,:content, 
-                     :is_enabled,:is_sticky,:is_recommend)
+                     :is_enabled,:is_sticky,:is_recommend,:the_order)
     end
 end
