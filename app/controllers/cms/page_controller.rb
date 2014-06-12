@@ -68,8 +68,7 @@ class Cms::PageController < ApplicationController
           end       
           logger.debug("body_file:" + body_file)
           body_template = File.read(body_file) if File.file?(body_file)
-          logger.debug("body_template:" + body_template.to_s)
-
+          #logger.debug("body_template:" + body_template.to_s)
         end
         if layout
           result_tempalte = layout.sub("{{body_template}}",body_template.to_s) 
