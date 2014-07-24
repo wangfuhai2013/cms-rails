@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.0.0"
   s.add_dependency "will_paginate", "~> 3.0"
   s.add_dependency "redactor-rails", "~> 0.4.3"
+  
+  s.add_dependency "utils", "~> 1.0.0"
 
   s.add_development_dependency "sqlite3"
 end

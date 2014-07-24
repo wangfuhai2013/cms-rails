@@ -370,14 +370,6 @@
 			}
 		},
 		{
-			"file": "app/views/cms/themes/show.html.erb",
-			"settings":
-			{
-				"buffer_size": 2599,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/controllers/cms/infos_controller.rb",
 			"settings":
 			{
@@ -454,13 +446,14 @@
 	},
 	"file_history":
 	[
+		"/opt/data/work/cms-rails/lib/cms/engine.rb",
+		"/opt/data/work/cms-rails/app/views/cms/themes/show.html.erb",
+		"/opt/data/work/cms-rails/lib/cms/version.rb",
 		"/opt/data/work/cms-rails/db/migrate/20130802023738_create_cms_infos.rb",
 		"/opt/data/work/cms-rails/app/views/cms/themes/index.html.erb",
 		"/opt/data/work/cms-rails/app/views/cms/themes/_form.html.erb",
 		"/opt/data/work/cms-rails/app/models/cms/theme.rb",
-		"/opt/data/work/cms-rails/app/views/cms/themes/show.html.erb",
 		"/opt/data/work/cms-rails/lib/cms.rb",
-		"/opt/data/work/cms-rails/lib/cms/version.rb",
 		"/opt/data/work/cms-rails/app/views/cms/infos/index.html.erb",
 		"/opt/data/work/cms-rails/app/views/cms/setting/modify.html.erb",
 		"/opt/data/work/cms-rails/app/views/cms/categories/_form.html.erb",
@@ -580,8 +573,7 @@
 		"/opt/data/work/ums/app/views/ums/users/_form.html.erb",
 		"/opt/data/work/ums/.gitignore",
 		"/opt/data/work/ums/ums.sublime-project",
-		"/opt/data/work/ums/app/views/ums/users/password.html.erb",
-		"/opt/data/work/ums/app/views/ums/users/password.html.erb 2"
+		"/opt/data/work/ums/app/views/ums/users/password.html.erb"
 	],
 	"find":
 	{
@@ -608,6 +600,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"account",
 			"body_template",
 			"info",
 			"image_file",
@@ -734,8 +727,7 @@
 			"pure-menu li a",
 			"main_setting",
 			"main_settgng",
-			"main_settgin",
-			"view_count"
+			"main_settgin"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -799,7 +791,6 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
 				{
@@ -967,6 +958,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "ASCII",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
@@ -1144,6 +1136,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
@@ -1520,6 +1513,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
@@ -1542,8 +1536,8 @@
 						"selection":
 						[
 							[
-								3334,
-								3334
+								1224,
+								1235
 							]
 						],
 						"settings":
@@ -1571,6 +1565,10 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1695,6 +1693,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
@@ -1702,7 +1701,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1273.0,
+						"translation.y": 125.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1719,8 +1718,8 @@
 						"selection":
 						[
 							[
-								1106,
-								1091
+								871,
+								871
 							]
 						],
 						"settings":
@@ -1748,6 +1747,10 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1872,6 +1875,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
@@ -2047,6 +2051,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
@@ -2224,6 +2229,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
@@ -2399,6 +2405,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Markdown/Markdown.tmLanguage",
@@ -2413,183 +2420,6 @@
 				},
 				{
 					"buffer": 9,
-					"file": "app/views/cms/themes/show.html.erb",
-					"settings":
-					{
-						"buffer_size": 2599,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								967,
-								967
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"origin_encoding": "UTF-8",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
 					"file": "app/controllers/cms/infos_controller.rb",
 					"settings":
 					{
@@ -2629,6 +2459,10 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -2753,6 +2587,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
@@ -2766,7 +2601,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 10,
 					"file": "app/views/cms/infos/_form.html.erb",
 					"settings":
 					{
@@ -2930,6 +2765,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
@@ -2943,7 +2779,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 11,
 					"file": "app/views/cms/infos/index.html.erb",
 					"settings":
 					{
@@ -2954,8 +2790,8 @@
 						"selection":
 						[
 							[
-								1219,
-								1219
+								68,
+								74
 							]
 						],
 						"settings":
@@ -2983,6 +2819,10 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -3107,6 +2947,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"is_preview": true,
 							"origin_encoding": "UTF-8",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
@@ -3114,7 +2955,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 228.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -3218,6 +3059,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 304.0,
+	"side_bar_width": 355.0,
 	"status_bar_visible": true
 }

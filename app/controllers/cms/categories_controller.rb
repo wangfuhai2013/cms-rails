@@ -34,7 +34,7 @@ class Cms::CategoriesController < ApplicationController
     respond_to do |format|
 
       if upload_file_is_permitted && @cms_category.save
-        @cms_category.logo_file = upload(params[:category][:logo_file])
+        @cms_category.logo_file = Utils::FileUtil.upload(params[:category][:logo_file])
         @cms_category.save
 
         format.html { redirect_to cms.categories_path, notice: 'Category was successfully created.' }
@@ -52,8 +52,8 @@ class Cms::CategoriesController < ApplicationController
     respond_to do |format|
       if @cms_category.update(cms_category_params) && upload_file_is_permitted
         if params[:category][:logo_file]
-           delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
-           @cms_category.logo_file = upload(params[:category][:logo_file]) 
+           Utils::FileUtil.delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
+           @cms_category.logo_file = Utils::FileUtil.upload(params[:category][:logo_file]) 
            @cms_category.save
         end
         format.html { redirect_to cms.categories_path, notice: 'Category was successfully updated.' }
@@ -71,7 +71,7 @@ class Cms::CategoriesController < ApplicationController
     if @cms_category.infos.size > 0
       flash[:error] = "该类别还有信息数据，不可以删除"
     else
-      delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
+      Utils::FileUtil.delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
       @cms_category.destroy
     end  
     
@@ -83,7 +83,7 @@ class Cms::CategoriesController < ApplicationController
 
   private
     def upload_file_is_permitted
-        logo_file_forbid = !check_ext(params[:category][:logo_file]) 
+        logo_file_forbid = !Utils::FileUtil.check_ext(params[:category][:logo_file]) 
         if logo_file_forbid
            @cms_info.errors.add(:logo_file, "无效的文件类型，只允许:" + 
                   Rails.configuration.upload_extname) 

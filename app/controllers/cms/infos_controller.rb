@@ -40,8 +40,8 @@ class Cms::InfosController < ApplicationController
     @cms_info.column = @cms_info.category.column
     respond_to do |format|
       if upload_file_is_permitted && @cms_info.save
-        @cms_info.cover_picture_file = upload(params[:info][:cover_picture_file])
-        @cms_info.attachment_file = upload(params[:info][:attachment_file])
+        @cms_info.cover_picture_file = Utils::FileUtil.upload(params[:info][:cover_picture_file])
+        @cms_info.attachment_file = Utils::FileUtil.upload(params[:info][:attachment_file])
         @cms_info.save
 
         format.html { redirect_to cms.infos_path, notice: '信息已成功创建.' }
@@ -61,11 +61,11 @@ class Cms::InfosController < ApplicationController
         @cms_info.column = @cms_info.category.column
 
         if params[:info][:cover_picture_file]
-           delete_file(@cms_info.cover_picture_file) if !@cms_info.cover_picture_file.blank?
-           @cms_info.cover_picture_file = upload(params[:info][:cover_picture_file]) 
+           Utils::FileUtil.delete_file(@cms_info.cover_picture_file) if !@cms_info.cover_picture_file.blank?
+           @cms_info.cover_picture_file = Utils::FileUtil.upload(params[:info][:cover_picture_file]) 
         end
         if params[:info][:attachment_file]
-           delete_file(@cms_info.attachment_file) if !@cms_info.attachment_file.blank?
+           Utils::FileUtil.delete_file(@cms_info.attachment_file) if !@cms_info.attachment_file.blank?
            @cms_info.attachment_file = upload(params[:info][:attachment_file]) 
         end
         @cms_info.save
@@ -83,8 +83,8 @@ class Cms::InfosController < ApplicationController
   # DELETE /site/infos/1.json
   def destroy
     
-    delete_file(@cms_info.cover_picture_file) if !@cms_info.cover_picture_file.blank?
-    delete_file(@cms_info.attachment_file) if !@cms_info.attachment_file.blank?
+    Utils::FileUtil.delete_file(@cms_info.cover_picture_file) if !@cms_info.cover_picture_file.blank?
+    Utils::FileUtil.delete_file(@cms_info.attachment_file) if !@cms_info.attachment_file.blank?
 
     @cms_info.destroy
     respond_to do |format|
@@ -95,8 +95,8 @@ class Cms::InfosController < ApplicationController
 
   private
      def upload_file_is_permitted
-        cover_file_forbid = !check_ext(params[:info][:cover_picture_file]) 
-        att_file_forbid = !check_ext(params[:info][:attachment_file]) 
+        cover_file_forbid = !Utils::FileUtil.check_ext(params[:info][:cover_picture_file]) 
+        att_file_forbid = !Utils::FileUtil.check_ext(params[:info][:attachment_file]) 
         if cover_file_forbid ||att_file_forbid
            @cms_info.errors.add(:cover_picture_file, "无效的文件类型，只允许:"+ Rails.configuration.upload_extname) if cover_file_forbid
            @cms_info.errors.add(:attachment_file, "无效的文件类型，只允许:"+ Rails.configuration.upload_extname) if att_file_forbid
@@ -107,7 +107,7 @@ class Cms::InfosController < ApplicationController
     end
     def get_thumb_image
       if params[:info][:cover_picture_file] && upload_file_is_permitted
-         thumb_image (Rails.root.join("public",@cms_info.cover_picture_file).to_s) 
+         Utils::FileUtil.thumb_image (Rails.root.join("public",@cms_info.cover_picture_file).to_s) 
       end
     end
 
