@@ -106,7 +106,7 @@ class Cms::InfosController < ApplicationController
         end        
     end
     def get_thumb_image
-      if params[:info][:cover_picture_file] && upload_file_is_permitted
+      if @cms_info.valid? && params[:info][:cover_picture_file] && upload_file_is_permitted
          Utils::FileUtil.thumb_image (Rails.root.join("public",@cms_info.cover_picture_file).to_s) 
       end
     end
