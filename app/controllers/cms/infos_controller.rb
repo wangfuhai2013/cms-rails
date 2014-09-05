@@ -10,11 +10,21 @@ class Cms::InfosController < ApplicationController
     @cms_categories.each do |category|
       category_ids += "," + category.id.to_s
     end
+    search_params_in_session
+
     where = "1" 
     where += " AND category_id IN (#{category_ids}) " if params[:category_id].blank?
     where += " AND category_id = #{params[:category_id]} " unless params[:category_id].blank?
     where += " AND title like '%#{params[:title]}%' " unless params[:title].blank?    
     @cms_infos = Cms::Info.where(where).order(the_order: :asc,updated_at: :desc).page(params[:page])
+  end
+
+  def search_params_in_session
+    session[:cms_info_category_id] = params[:category_id] unless params[:category_id].nil?
+    session[:cms_info_title] = params[:title] unless params[:title].nil?
+
+    params[:category_id] = session[:cms_info_category_id] 
+    params[:title] = session[:cms_info_title]
   end
 
   # GET /site/infos/1

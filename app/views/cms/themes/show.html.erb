@@ -74,7 +74,7 @@
         <td><%= link_to '修改', cms.edit_template_path(cms_template) %></td>
       </tr>
        <% if cms_template.column.child_columns.size > 0 
-             child_column_templates = Cms::Template.joins(:column).where("theme_id = ? AND cms.columns.parent_column_id = ?",cms_template.theme_id,cms_template.column_id)
+             child_column_templates = Cms::Template.joins(:column).where("theme_id = ? AND cms_columns.parent_column_id = ?",cms_template.theme_id,cms_template.column_id)
              child_column_templates.each do |child_template| 
        %>
               <tr>

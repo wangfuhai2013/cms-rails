@@ -1,4 +1,4 @@
-<%= form_tag nil,method: :get do %>  
+<%= form_tag nil,method: :get,id:"search_form" do %>  
 <div class="row">
 <div class="col-md-4">
 <h1>信息列表 <small><%= link_to '新建信息', cms.new_info_path ,:class => "btn btn-primary" %></small></h1>
@@ -10,8 +10,12 @@
      <%= text_field_tag :title,params[:title],class:"form-control",placeholder:"输入标题"%>
   </div>
     <div class="col-md-1" style="margin-top: 30px;margin-bottom: 0px; padding-left: 15px;">
-     <%= submit_tag "搜索" ,:class => "btn btn-info" %>
+     <%= submit_tag "搜索" ,:class => "btn btn-info" %>     
   </div>
+    <div class="col-md-1" style="margin-top: 30px;margin-bottom: 0px; padding-left: 15px;">
+     <%= button_tag "全部" ,:class => "btn btn-success",:id=>"search_all" %>     
+  </div>
+
 </div>
 <% end %> 
 
@@ -87,3 +91,12 @@
  <%= will_paginate @cms_infos ,:container => false%>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#search_all").click(function(){
+         $("#category_id").val("");
+         $("#title").val("");
+         $("#search_form").submit();
+      });
+  });
+</script>

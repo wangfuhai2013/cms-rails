@@ -57,6 +57,16 @@ class Cms::PageController < ApplicationController
           layout_file = File.join(theme_path,'layout.html.erb')
           layout = File.read(layout_file) if File.file?(layout_file)
 
+          #支持不同栏目使用不同模板
+          column_path = @site_column.path
+          column_path = @site_column.parent_column.path if @site_column.parent_column
+          column_layout_file = File.join(theme_path,column_path,'layout.html.erb')
+          #logger.debug("column_layout_file:" + column_layout_file)
+          if File.file?(column_layout_file)
+            column_layout = File.read(column_layout_file)
+            layout = layout.sub("{{body_template}}",column_layout.to_s) if layout
+          end
+
           if @site_column.parent_column
             body_file = File.join(theme_path,@site_column.parent_column.path,@site_column.path + ".html.erb")
           else
