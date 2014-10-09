@@ -2,6 +2,7 @@ class CreateCmsSites < ActiveRecord::Migration
   def change
     create_table :cms_sites do |t|
       t.string :name
+      t.references :account, index: true
       t.string :site_key      
       t.string :logo_file
       t.string :tel

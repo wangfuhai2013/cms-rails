@@ -47,7 +47,6 @@ class Cms::SitesController < ApplicationController
         format.html { redirect_to cms.sites_url, notice: '站点已修改.' }
         format.json { head :no_content }
       else
-        @accounts = Account.all
         @cms_theme = Cms::Theme.all
         format.html { render action: 'edit' }
         format.json { render json: @site.errors, status: :unprocessable_entity }

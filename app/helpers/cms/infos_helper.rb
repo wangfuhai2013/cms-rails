@@ -5,7 +5,7 @@ module Cms::InfosHelper
     def home
     	@info_categories = Cms::Category.where(column_id: @site.columns ,is_enabled:true)
 	    @recommend_infos = Cms::Info.where("category_id IN (?) AND is_recommend = ? AND is_enabled = ?",
-	    	                          @info_categories,true,true).order("updated_at DESC").limit(5)
+	    	                          @info_categories.ids,true,true).order("updated_at DESC").limit(5)
 	    logger.debug("info size:" + @recommend_infos.size.to_s)
 	end
 	def info

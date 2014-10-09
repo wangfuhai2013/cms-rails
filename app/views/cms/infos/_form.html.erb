@@ -27,7 +27,10 @@
     <%= f.label :description ,'信息摘要'%>
     <%= f.text_area :description , :rows=>"3"%>
   </div>
-
+  <div class="field">
+    <%= f.label :url ,'相关URL'%>
+    <%= f.text_field :url,size:"65" %>
+  </div>
     <script type="text/javascript">
     $(document).ready(
       function(){

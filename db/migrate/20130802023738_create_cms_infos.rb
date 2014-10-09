@@ -5,6 +5,7 @@ class CreateCmsInfos < ActiveRecord::Migration
       t.references :category, index: true
       t.references :column, index: true
       t.text :description
+      t.string :url      
       t.text :content
       t.string :cover_picture_file
       t.string :attachment_file
