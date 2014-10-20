@@ -133,7 +133,7 @@ class Cms::InfosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cms_info_params
-      params.require(:info).permit(:title, :description, :category_id,:content, 
+      params.require(:info).permit(:title, :description, :category_id,:content,:url
                      :is_enabled,:is_sticky,:is_recommend,:the_order)
     end
 end
