@@ -37,7 +37,7 @@ class Cms::CategoriesController < ApplicationController
         @cms_category.logo_file = Utils::FileUtil.upload(params[:category][:logo_file])
         @cms_category.save
 
-        format.html { redirect_to cms.categories_path, notice: 'Category was successfully created.' }
+        format.html { redirect_to cms.categories_path, notice: '类别已创建.' }
         format.json { render action: 'show', status: :created, location: @cms_category }
       else
         format.html { render action: 'new' }
@@ -50,13 +50,17 @@ class Cms::CategoriesController < ApplicationController
   # PATCH/PUT /site/categories/1.json
   def update
     respond_to do |format|
+      old_column_id = @cms_category.column_id
       if @cms_category.update(cms_category_params) && upload_file_is_permitted
         if params[:category][:logo_file]
            Utils::FileUtil.delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
            @cms_category.logo_file = Utils::FileUtil.upload(params[:category][:logo_file]) 
            @cms_category.save
         end
-        format.html { redirect_to cms.categories_path, notice: 'Category was successfully updated.' }
+        #批量更新信息的栏目
+        Cms::Info.where("category_id = ? ",@cms_category.id).update_all({column_id: @cms_category.column_id}) if old_column_id != @cms_category.column_id
+
+        format.html { redirect_to cms.categories_path, notice: '类别已修改.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -73,6 +77,7 @@ class Cms::CategoriesController < ApplicationController
     else
       Utils::FileUtil.delete_file(@cms_category.logo_file) if !@cms_category.logo_file.blank?
       @cms_category.destroy
+      flash[:notice] = "类别已删除"
     end  
     
     respond_to do |format|
