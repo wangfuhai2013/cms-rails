@@ -44,24 +44,22 @@
         params = csrf_param + "=" + encodeURIComponent(csrf_token);
       }
 
-      $.Redactor.opts.langs['zh_cn']['filename'] = "名称(可选)";
       $('#redactor').redactor(
         { "imageUpload":"/redactor_rails/pictures?" + params,
-          "imageGetJson":"/redactor_rails/pictures",
           "fileUpload":"/redactor_rails/documents?" + params,
-          "fileGetJson":"/redactor_rails/documents",
-          "path":"/assets/redactor-rails",
-          "css":"style.css",
           "autoresize":"true",
           "minHeight": 200,
           "visual": false,
-          "plugins": ['fullscreen','fontcolor','fontsize','fontfamily'],
+          "buttonSource": true,          
+          "plugins": ['table','fontcolor','fontsize','fontfamily','fullscreen'],
           "lang":'zh_cn',
-          "initCallback": function() {
-              $('#redactor').val(ori_content);
-           }
+          initCallback: function(){
+            $('#redactor').val(ori_content);
+          }
+          
         } 
       );
+      
     });
    //}
   </script>  

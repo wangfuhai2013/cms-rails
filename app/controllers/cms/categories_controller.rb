@@ -58,7 +58,8 @@ class Cms::CategoriesController < ApplicationController
            @cms_category.save
         end
         #批量更新信息的栏目
-        Cms::Info.where("category_id = ? ",@cms_category.id).update_all({column_id: @cms_category.column_id}) if old_column_id != @cms_category.column_id
+        Cms::Info.where("category_id = ? ",@cms_category.id).
+                  update_all(column_id: @cms_category.column_id) if old_column_id != @cms_category.column_id
 
         format.html { redirect_to cms.categories_path, notice: '类别已修改.' }
         format.json { head :no_content }
