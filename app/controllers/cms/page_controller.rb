@@ -15,7 +15,7 @@ class Cms::PageController < ApplicationController
          column = @site.columns.where(:path => params[:column]).take
       end
       if column.nil?
-        logger.error("站点栏目不存:@site.name:"+@site.name+",column:"+params[:column])
+        logger.error("站点栏目不存在:@site.name:"+ @site.name + ",column:" + params[:column].to_s)
         render text: "<p>该站点栏目暂不存在,请联系网站管理员</p>"
         return
       end
@@ -27,6 +27,12 @@ class Cms::PageController < ApplicationController
         method = column.function.method
       else #指定子栏目，以子栏目为准
         @site_column = @site.columns.where(:parent_column_id => column.id ,:path => params[:child_column]).take
+        if @site_column.nil?
+          logger.error("站点子栏目不存在:@site.name:"+@site.name+",column:"+params[:child_column].to_s)
+          render text: "<p>该站点子栏目暂不存在,请联系网站管理员</p>"
+          return
+        end
+
         method = @site_column.function.parent_function.method + "_" + @site_column.function.method
         @site_column.update_column(:view_count,@site_column.view_count + 1)
       end
